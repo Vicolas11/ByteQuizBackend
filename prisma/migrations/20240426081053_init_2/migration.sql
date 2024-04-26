@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `quiz` ADD COLUMN `overallPoint` INTEGER NOT NULL DEFAULT 0;
