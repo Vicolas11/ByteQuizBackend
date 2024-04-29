@@ -1,11 +1,15 @@
 import { NextFunction, Request, Response } from "express";
+import { removeSlash } from "../utils/removeslash.utils";
 import { errorResponse } from "../utils/errorResponse";
 import Joi from "joi";
-import { removeSlash } from "../utils/removeslash.utils";
 
-export const validateRequest = (schema: Joi.ObjectSchema) => {
+export const validateRequest = (
+  schema: Joi.ObjectSchema,
+  reqKey?: "body" | "params" | "query"
+) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.body);
+    const { error } = schema.validate(req[reqKey || "body"]);
+
     if (error) {
       return errorResponse({
         message:
@@ -16,6 +20,7 @@ export const validateRequest = (schema: Joi.ObjectSchema) => {
         res,
       });
     }
+
     next();
   };
 };
