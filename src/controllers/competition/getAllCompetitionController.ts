@@ -1,10 +1,10 @@
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
+import { formatErrMsg } from "../../utils/format.str.util";
 import { errorResponse } from "../../utils/errorResponse";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
-import { formatErrMsg } from "../../utils/format.str.util";
 
 const GetAllCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
@@ -18,6 +18,16 @@ const GetAllCompetitionController = catchAsync(
     try {
       const competitions = await prisma.competition.findMany({
         orderBy: { createdAt: "desc" },
+        include: {
+          createdBy: {
+            select: {
+              id: true,
+              username: true,
+              email: true,
+              avatar: true
+            }
+          }
+        },
         take: pageSize,
         skip,
       });

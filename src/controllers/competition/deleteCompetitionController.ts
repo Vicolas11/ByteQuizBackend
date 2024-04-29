@@ -1,10 +1,10 @@
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
 import { errorResponse } from "../../utils/errorResponse";
+import { formatErrMsg } from "../../utils/format.str.util";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
-import { formatErrMsg } from "../../utils/format.str.util";
 
 const DeleteCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ const DeleteCompetitionController = catchAsync(
       // Check if it's the loginUser
       if (competition.createdUserId !== userId) {
         return errorResponse({
-          message: "You don't permission to perform this!",
+          message: "You don't have permission to perform this request!",
           status: 401,
           res,
         });
@@ -39,8 +39,8 @@ const DeleteCompetitionController = catchAsync(
       await prisma.competition.delete({ where: { id } });
 
       return successResponse({
-        status: 204,
-        message: "Deleted successfully!",
+        status: 200,
+        message: "Deleted competition successfully!",
         data: null,
         res,
       });

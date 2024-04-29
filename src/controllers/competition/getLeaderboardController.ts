@@ -1,34 +1,29 @@
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
+import { formatErrMsg } from "../../utils/format.str.util";
 import { errorResponse } from "../../utils/errorResponse";
 import { toOrdinal } from "../../utils/ordinal.util";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
-import { formatErrMsg } from "../../utils/format.str.util";
 
 const GetLeaderboardController = catchAsync(
   async (req: Request, res: Response) => {
-    const { competitionId } = req.params;
+    const { id } = req.params;
     let { currentPage, perPage } = req.query;
     const pageSize = +(perPage as string) || 10;
     const pgNum = +(currentPage as string) || 1;
     const skip = (pgNum - 1) * pageSize;
-    const totalCount = await prisma.competition.count();
+    const totalCount = (
+      await prisma.competitionToUser.findMany({ where: { competitionId: id } })
+    ).length || 0;
     const totalPages = Math.ceil(totalCount / pageSize);
     const userId = req.user?.id as string;
 
     try {
+      // Check if competition exist
       const competition = await prisma.competition.findUnique({
-        where: { id: competitionId },
-        include: {
-          joinedUsers: {
-            select: {
-              user: true,
-              joinedDate: true,
-            },
-          },
-        },
+        where: { id },
       });
 
       if (!competition) {
@@ -39,13 +34,36 @@ const GetLeaderboardController = catchAsync(
         });
       }
 
-      let userWithDetails = competition.joinedUsers.map((data) => ({
+      const competitionToUser = await prisma.competitionToUser.findMany({
+        where: { competitionId: competition.id },
+        include: {
+          user: {
+            select: {
+              id: true,
+              username: true,
+              email: true,
+              avatar: true,
+              gender: true,
+            },
+          },
+        },
+      });
+
+      if (!competitionToUser) {
+        return errorResponse({
+          message: "Competition not found!",
+          status: 404,
+          res,
+        });
+      }
+
+      let userWithDetails = competitionToUser.map((data) => ({
         index: 0,
         user: data.user,
-        point: competition.totalPoint,
+        point: data.totalPoint,
         position: "",
         joinedDate: data.joinedDate,
-        isUser: data.user.id === userId,
+        isUser: data.userId === userId,
       }));
 
       // Sort users by totalPoints in descending order
@@ -54,7 +72,7 @@ const GetLeaderboardController = catchAsync(
       // Add position to each user
       userWithDetails.forEach((data, id) => {
         {
-          data.index = id + 1
+          data.index = id + 1;
           data.position = toOrdinal(id + 1);
         }
       });
@@ -63,7 +81,7 @@ const GetLeaderboardController = catchAsync(
       userWithDetails = userWithDetails.slice(skip, skip + pageSize);
 
       return successResponse({
-        message: "Fetch successfully",
+        message: "Fetched successfully",
         data: userWithDetails,
         res,
         other: {
@@ -73,7 +91,8 @@ const GetLeaderboardController = catchAsync(
       });
     } catch (err: any) {
       return errorResponse({
-        message: formatErrMsg(err.message) || err.message || "An error occurred",
+        message:
+          formatErrMsg(err.message) || err.message || "An error occurred",
         status: 500,
         res,
       });

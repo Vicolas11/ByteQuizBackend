@@ -1,10 +1,10 @@
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
+import { formatErrMsg } from "../../utils/format.str.util";
 import { errorResponse } from "../../utils/errorResponse";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
-import { formatErrMsg } from "../../utils/format.str.util";
 
 const GetCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
@@ -13,8 +13,30 @@ const GetCompetitionController = catchAsync(
     try {
       const competition = await prisma.competition.findFirst({
         where: { AND: [{ id }] },
+        orderBy: { createdAt: "asc" },
         include: {
-          questions: true
+          questions: {
+            where: { isCompleted: false },
+            select: {
+              id: true,
+              question: true,
+              score: true,
+              time: true,
+              point: true,
+              isAnswered: true,
+              isCompleted: true,
+              options: {
+                orderBy: { label: "asc" },
+                select: {
+                  id: true,
+                  value: true,
+                  label: true,
+                  isCorrect: true,
+                  isSelected: true,
+                },
+              },
+            },
+          },
         },
       });
 
@@ -33,7 +55,8 @@ const GetCompetitionController = catchAsync(
       });
     } catch (err: any) {
       return errorResponse({
-        message: formatErrMsg(err.message) || err.message || "An error occurred",
+        message:
+          formatErrMsg(err.message) || err.message || "An error occurred",
         status: 500,
         res,
       });

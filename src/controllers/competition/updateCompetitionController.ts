@@ -1,36 +1,34 @@
-import { CompetitionUpdInputSchema } from "../../joi/competition.joi";
-import { QuestionType } from "../../interfaces/question.interface";
+import { formatErrMsg, formatQuestions } from "../../utils/format.str.util";
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
+import { totalPointVal } from "../../utils/totalPoint.util";
 import { errorResponse } from "../../utils/errorResponse";
+import { titleCase } from "../../utils/titleCase.util";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
-import { titleCase } from "../../utils/titleCase.util";
-import { totalPointVal } from "../../utils/totalPoint.util";
-import { formatErrMsg } from "../../utils/format.str.util";
 
 const UpdateCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
     let { id, title, subtitle, price, questionData } = req.body;
     title = titleCase(title);
-    const totalPoint = totalPointVal(questionData as QuestionType[]);
     const userId = req.user?.id;
 
     try {
-      // Valid Request Body input
-      const { error } = CompetitionUpdInputSchema.validate(req.body);
+      // Check if the Competition Title exist
+      const existCompete = await prisma.competition.findFirst({
+        where: { title },
+      });
 
-      if (error) {
+      if (existCompete) {
         return errorResponse({
-          message:
-            `${error.details.map((err) => err.message)}` || "Invalid input",
-          status: 400,
+          message: "Competition with this title already exist",
+          status: 409,
           res,
         });
       }
 
-      // Check if the competition exist
+      // Check if the Competition exist
       const competition = await prisma.competition.findFirst({
         where: { AND: [{ id }] },
         include: {
@@ -49,11 +47,22 @@ const UpdateCompetitionController = catchAsync(
       // Check if it's the loginUser
       if (competition.createdUserId !== userId) {
         return errorResponse({
-          message: "You don't permission to perform this!",
+          message: "You don't have permission to perform this request!",
           status: 401,
           res,
         });
       }
+
+      if (competition.hasStarted) {
+        return errorResponse({
+          message: "Can't update this Competition again!",
+          status: 401,
+          res,
+        });
+      }
+
+      const competeQuestions = formatQuestions(questionData);
+      const overallPoint = totalPointVal(competeQuestions);
 
       // Update Competitiion
       await prisma.competition.update({
@@ -62,21 +71,40 @@ const UpdateCompetitionController = catchAsync(
           title,
           subtitle,
           price,
-          totalPoint,
-          questions: {
-            create: questionData,
-          },
+          overallPoint,
         },
       });
 
+      // Update Each related Question and Option
+      for (const questData of questionData) {
+        const { id: questionId, options, ...question } = questData;
+
+        await prisma.question.update({
+          where: { id: questionId },
+          data: question,
+        });
+
+        // Iterate over options and create/update each option
+        for (const optionData of options) {
+          const { id: optionId, ...option } = optionData;
+
+          // Update the option
+          await prisma.option.update({
+            where: { id: optionId },
+            data: option,
+          });
+        }
+      }
+
       return successResponse({
         message: "Competition updated successfully!",
-        data: [],
+        data: null,
         res,
       });
     } catch (err: any) {
       return errorResponse({
-        message: formatErrMsg(err.message) || err.message || "An error occurred",
+        message:
+          formatErrMsg(err.message) || err.message || "An error occurred",
         status: 500,
         res,
       });
