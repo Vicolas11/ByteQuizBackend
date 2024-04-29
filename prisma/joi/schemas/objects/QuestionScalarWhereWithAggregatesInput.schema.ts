@@ -3,7 +3,8 @@ import Joi from 'joi';
 import { StringWithAggregatesFilterSchemaObject } from './StringWithAggregatesFilter.schema';
 import { IntWithAggregatesFilterSchemaObject } from './IntWithAggregatesFilter.schema';
 import { BoolWithAggregatesFilterSchemaObject } from './BoolWithAggregatesFilter.schema';
-import { StringNullableWithAggregatesFilterSchemaObject } from './StringNullableWithAggregatesFilter.schema'
+import { StringNullableWithAggregatesFilterSchemaObject } from './StringNullableWithAggregatesFilter.schema';
+import { DateTimeWithAggregatesFilterSchemaObject } from './DateTimeWithAggregatesFilter.schema'
 
 export const QuestionScalarWhereWithAggregatesInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#QuestionScalarWhereWithAggregatesInput'),
@@ -28,5 +29,8 @@ Joi.boolean()),
   competitionId: Joi.alternatives().try(Joi.object().keys(StringNullableWithAggregatesFilterSchemaObject),
 Joi.string()),
   quizId: Joi.alternatives().try(Joi.object().keys(StringNullableWithAggregatesFilterSchemaObject),
+Joi.string()),
+  createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeWithAggregatesFilterSchemaObject)),
+  userId: Joi.alternatives().try(Joi.object().keys(StringNullableWithAggregatesFilterSchemaObject),
 Joi.string())
 }

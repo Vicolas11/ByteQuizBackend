@@ -11,5 +11,7 @@ export const QuestionMinOrderByAggregateInputSchemaObject = {
   isAnswered: SortOrderSchema,
   isCompleted: SortOrderSchema,
   competitionId: SortOrderSchema,
-  quizId: SortOrderSchema
+  quizId: SortOrderSchema,
+  createdAt: SortOrderSchema,
+  userId: SortOrderSchema
 }

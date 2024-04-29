@@ -1,11 +1,11 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { QuizUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './QuizUncheckedCreateNestedManyWithoutUserInput.schema';
-import { LeaderboardUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LeaderboardUncheckedCreateNestedManyWithoutUserInput.schema';
 import { AchievementUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './AchievementUncheckedCreateNestedManyWithoutUserInput.schema';
 import { CompetitionUncheckedCreateNestedManyWithoutCreatedByInputSchemaObject } from './CompetitionUncheckedCreateNestedManyWithoutCreatedByInput.schema';
 import { CompetitionToUserUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './CompetitionToUserUncheckedCreateNestedManyWithoutUserInput.schema';
-import { LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenUncheckedCreateNestedManyWithoutUserInput.schema'
+import { LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenUncheckedCreateNestedManyWithoutUserInput.schema';
+import { QuestionUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './QuestionUncheckedCreateNestedManyWithoutUserInput.schema'
 
 export const UserUncheckedCreateInputSchemaObject = {
     id: Joi.string(),
@@ -17,9 +17,9 @@ export const UserUncheckedCreateInputSchemaObject = {
   createAt: Joi.date(),
   highScore: Joi.number(),
   Quiz: Joi.object().keys(QuizUncheckedCreateNestedManyWithoutUserInputSchemaObject),
-  Leaderboard: Joi.object().keys(LeaderboardUncheckedCreateNestedManyWithoutUserInputSchemaObject),
   achievement: Joi.object().keys(AchievementUncheckedCreateNestedManyWithoutUserInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionUncheckedCreateNestedManyWithoutCreatedByInputSchemaObject),
   joinedCompetitions: Joi.object().keys(CompetitionToUserUncheckedCreateNestedManyWithoutUserInputSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject),
+  Question: Joi.object().keys(QuestionUncheckedCreateNestedManyWithoutUserInputSchemaObject)
 }

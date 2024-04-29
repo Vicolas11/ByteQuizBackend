@@ -27,11 +27,12 @@ enum Gender {
 }
 
 model Achievement {
-  id       String  @id @default(uuid())
-  title    String
-  medalImg String
-  User     User?   @relation(fields: [userId], references: [id])
-  userId   String?
+  id        String   @id @default(uuid())
+  title     String
+  medalImg  String
+  User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  createdAt DateTime @default(now())
 }
 
 model Option {
@@ -40,7 +41,7 @@ model Option {
   label      String
   isCorrect  Boolean
   isSelected Boolean   @default(false)
-  Question   Question? @relation(fields: [questionId], references: [id])
+  Question   Question? @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId String?
 }
 
@@ -53,10 +54,13 @@ model Question {
   point         Int          @default(0)
   isAnswered    Boolean      @default(false)
   isCompleted   Boolean      @default(false)
-  Competition   Competition? @relation(fields: [competitionId], references: [id])
+  Competition   Competition? @relation(fields: [competitionId], references: [id], onDelete: Cascade)
   competitionId String?
-  Quiz          Quiz?        @relation(fields: [quizId], references: [id])
+  Quiz          Quiz?        @relation(fields: [quizId], references: [id], onDelete: Cascade)
   quizId        String?
+  createdAt     DateTime     @default(now())
+  user          User?        @relation(fields: [userId], references: [id])
+  userId        String?
 }
 
 model Quiz {
@@ -64,21 +68,9 @@ model Quiz {
   questions    Question[]
   totalPoint   Int        @default(0)
   overallPoint Int        @default(0)
-  user         User       @relation(fields: [userId], references: [id])
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())
   userId       String
-}
-
-model Leaderboard {
-  id            String       @id @default(uuid())
-  user          User         @relation(fields: [userId], references: [id])
-  point         Int          @default(0)
-  position      String
-  performance   String
-  createdAt     DateTime     @default(now())
-  userId        String
-  Competition   Competition? @relation(fields: [competitionId], references: [id])
-  competitionId String?
 }
 
 model Competition {
@@ -87,14 +79,12 @@ model Competition {
   subtitle      String
   imgCover      String
   price         Int
-  point         Int                 @default(0)
-  totalPoint    Int                 @default(0)
   overallPoint  Int                 @default(0)
   createdAt     DateTime            @default(now())
+  hasStarted    Boolean             @default(false)
   createdUserId String
   questions     Question[]
-  leaderboards  Leaderboard[]
-  createdBy     User                @relation("createdBy", fields: [createdUserId], references: [id])
+  createdBy     User                @relation("createdBy", fields: [createdUserId], references: [id], onDelete: Cascade)
   joinedUsers   CompetitionToUser[]
 }
 
@@ -110,20 +100,22 @@ model User {
   highScore           Int                 @default(0)
   role                Role                @default(user)
   Quiz                Quiz[]
-  Leaderboard         Leaderboard[]
   achievement         Achievement[]
   createdCompetitions Competition[]       @relation("createdBy")
   joinedCompetitions  CompetitionToUser[]
   LogoutToken         LogoutToken[]
+  Question            Question[]
 }
 
 model CompetitionToUser {
-  user          User        @relation(fields: [userId], references: [id])
-  competition   Competition @relation(fields: [competitionId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competition   Competition @relation(fields: [competitionId], references: [id], onDelete: Cascade)
   userId        String
   competitionId String
   joinedDate    DateTime    @default(now())
   hasJoined     Boolean     @default(false)
+  hasSubmitted  Boolean     @default(false)
+  totalPoint    Int         @default(0)
 
   @@id([userId, competitionId])
 }

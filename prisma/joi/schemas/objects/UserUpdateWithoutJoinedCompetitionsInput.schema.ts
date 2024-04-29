@@ -8,10 +8,10 @@ import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldU
 import { IntFieldUpdateOperationsInputSchemaObject } from './IntFieldUpdateOperationsInput.schema';
 import { EnumRoleFieldUpdateOperationsInputSchemaObject } from './EnumRoleFieldUpdateOperationsInput.schema';
 import { QuizUpdateManyWithoutUserNestedInputSchemaObject } from './QuizUpdateManyWithoutUserNestedInput.schema';
-import { LeaderboardUpdateManyWithoutUserNestedInputSchemaObject } from './LeaderboardUpdateManyWithoutUserNestedInput.schema';
 import { AchievementUpdateManyWithoutUserNestedInputSchemaObject } from './AchievementUpdateManyWithoutUserNestedInput.schema';
 import { CompetitionUpdateManyWithoutCreatedByNestedInputSchemaObject } from './CompetitionUpdateManyWithoutCreatedByNestedInput.schema';
-import { LogoutTokenUpdateManyWithoutUserNestedInputSchemaObject } from './LogoutTokenUpdateManyWithoutUserNestedInput.schema'
+import { LogoutTokenUpdateManyWithoutUserNestedInputSchemaObject } from './LogoutTokenUpdateManyWithoutUserNestedInput.schema';
+import { QuestionUpdateManyWithoutUserNestedInputSchemaObject } from './QuestionUpdateManyWithoutUserNestedInput.schema'
 
 export const UserUpdateWithoutJoinedCompetitionsInputSchemaObject = {
     id: Joi.alternatives().try(Joi.string(),
@@ -32,8 +32,8 @@ Joi.object().keys(BoolFieldUpdateOperationsInputSchemaObject)),
 Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),
   role: Joi.alternatives().try(Joi.object().keys(EnumRoleFieldUpdateOperationsInputSchemaObject)),
   Quiz: Joi.object().keys(QuizUpdateManyWithoutUserNestedInputSchemaObject),
-  Leaderboard: Joi.object().keys(LeaderboardUpdateManyWithoutUserNestedInputSchemaObject),
   achievement: Joi.object().keys(AchievementUpdateManyWithoutUserNestedInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionUpdateManyWithoutCreatedByNestedInputSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenUpdateManyWithoutUserNestedInputSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenUpdateManyWithoutUserNestedInputSchemaObject),
+  Question: Joi.object().keys(QuestionUpdateManyWithoutUserNestedInputSchemaObject)
 }

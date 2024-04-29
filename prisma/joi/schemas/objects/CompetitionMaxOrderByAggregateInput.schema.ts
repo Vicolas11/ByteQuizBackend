@@ -8,9 +8,8 @@ export const CompetitionMaxOrderByAggregateInputSchemaObject = {
   subtitle: SortOrderSchema,
   imgCover: SortOrderSchema,
   price: SortOrderSchema,
-  point: SortOrderSchema,
-  totalPoint: SortOrderSchema,
   overallPoint: SortOrderSchema,
   createdAt: SortOrderSchema,
+  hasStarted: SortOrderSchema,
   createdUserId: SortOrderSchema
 }

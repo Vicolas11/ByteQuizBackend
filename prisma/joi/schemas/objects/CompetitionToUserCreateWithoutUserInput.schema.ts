@@ -5,5 +5,7 @@ import { CompetitionCreateNestedOneWithoutJoinedUsersInputSchemaObject } from '.
 export const CompetitionToUserCreateWithoutUserInputSchemaObject = {
     joinedDate: Joi.date(),
   hasJoined: Joi.boolean(),
+  hasSubmitted: Joi.boolean(),
+  totalPoint: Joi.number(),
   competition: Joi.object().keys(CompetitionCreateNestedOneWithoutJoinedUsersInputSchemaObject)
 }

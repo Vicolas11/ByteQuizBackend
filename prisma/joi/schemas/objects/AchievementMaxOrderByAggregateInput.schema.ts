@@ -6,5 +6,6 @@ export const AchievementMaxOrderByAggregateInputSchemaObject = {
     id: SortOrderSchema,
   title: SortOrderSchema,
   medalImg: SortOrderSchema,
-  userId: SortOrderSchema
+  userId: SortOrderSchema,
+  createdAt: SortOrderSchema
 }

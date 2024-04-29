@@ -1,3 +1,3 @@
 import Joi from 'joi';
 
-export const AchievementScalarFieldEnumSchema = Joi.string().valid(...["id","title","medalImg","userId"])
+export const AchievementScalarFieldEnumSchema = Joi.string().valid(...["id","title","medalImg","userId","createdAt"])

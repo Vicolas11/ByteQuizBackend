@@ -8,11 +8,11 @@ import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldU
 import { IntFieldUpdateOperationsInputSchemaObject } from './IntFieldUpdateOperationsInput.schema';
 import { EnumRoleFieldUpdateOperationsInputSchemaObject } from './EnumRoleFieldUpdateOperationsInput.schema';
 import { QuizUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './QuizUncheckedUpdateManyWithoutUserNestedInput.schema';
-import { LeaderboardUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './LeaderboardUncheckedUpdateManyWithoutUserNestedInput.schema';
 import { AchievementUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './AchievementUncheckedUpdateManyWithoutUserNestedInput.schema';
 import { CompetitionUncheckedUpdateManyWithoutCreatedByNestedInputSchemaObject } from './CompetitionUncheckedUpdateManyWithoutCreatedByNestedInput.schema';
 import { CompetitionToUserUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './CompetitionToUserUncheckedUpdateManyWithoutUserNestedInput.schema';
-import { LogoutTokenUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './LogoutTokenUncheckedUpdateManyWithoutUserNestedInput.schema'
+import { LogoutTokenUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './LogoutTokenUncheckedUpdateManyWithoutUserNestedInput.schema';
+import { QuestionUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './QuestionUncheckedUpdateManyWithoutUserNestedInput.schema'
 
 export const UserUncheckedUpdateInputSchemaObject = {
     id: Joi.alternatives().try(Joi.string(),
@@ -33,9 +33,9 @@ Joi.object().keys(BoolFieldUpdateOperationsInputSchemaObject)),
 Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),
   role: Joi.alternatives().try(Joi.object().keys(EnumRoleFieldUpdateOperationsInputSchemaObject)),
   Quiz: Joi.object().keys(QuizUncheckedUpdateManyWithoutUserNestedInputSchemaObject),
-  Leaderboard: Joi.object().keys(LeaderboardUncheckedUpdateManyWithoutUserNestedInputSchemaObject),
   achievement: Joi.object().keys(AchievementUncheckedUpdateManyWithoutUserNestedInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionUncheckedUpdateManyWithoutCreatedByNestedInputSchemaObject),
   joinedCompetitions: Joi.object().keys(CompetitionToUserUncheckedUpdateManyWithoutUserNestedInputSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenUncheckedUpdateManyWithoutUserNestedInputSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenUncheckedUpdateManyWithoutUserNestedInputSchemaObject),
+  Question: Joi.object().keys(QuestionUncheckedUpdateManyWithoutUserNestedInputSchemaObject)
 }

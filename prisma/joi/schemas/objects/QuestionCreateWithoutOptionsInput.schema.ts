@@ -1,7 +1,8 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { CompetitionCreateNestedOneWithoutQuestionsInputSchemaObject } from './CompetitionCreateNestedOneWithoutQuestionsInput.schema';
-import { QuizCreateNestedOneWithoutQuestionsInputSchemaObject } from './QuizCreateNestedOneWithoutQuestionsInput.schema'
+import { QuizCreateNestedOneWithoutQuestionsInputSchemaObject } from './QuizCreateNestedOneWithoutQuestionsInput.schema';
+import { UserCreateNestedOneWithoutQuestionInputSchemaObject } from './UserCreateNestedOneWithoutQuestionInput.schema'
 
 export const QuestionCreateWithoutOptionsInputSchemaObject = {
     id: Joi.string(),
@@ -11,6 +12,8 @@ export const QuestionCreateWithoutOptionsInputSchemaObject = {
   point: Joi.number(),
   isAnswered: Joi.boolean(),
   isCompleted: Joi.boolean(),
+  createdAt: Joi.date(),
   Competition: Joi.object().keys(CompetitionCreateNestedOneWithoutQuestionsInputSchemaObject),
-  Quiz: Joi.object().keys(QuizCreateNestedOneWithoutQuestionsInputSchemaObject)
+  Quiz: Joi.object().keys(QuizCreateNestedOneWithoutQuestionsInputSchemaObject),
+  user: Joi.object().keys(UserCreateNestedOneWithoutQuestionInputSchemaObject)
 }

@@ -12,6 +12,7 @@ export const AchievementOrderByWithAggregationInputSchemaObject = {
   medalImg: SortOrderSchema,
   userId: Joi.alternatives().try(SortOrderSchema,
 Joi.object().keys(SortOrderInputSchemaObject)),
+  createdAt: SortOrderSchema,
   _count: Joi.object().keys(AchievementCountOrderByAggregateInputSchemaObject),
   _max: Joi.object().keys(AchievementMaxOrderByAggregateInputSchemaObject),
   _min: Joi.object().keys(AchievementMinOrderByAggregateInputSchemaObject)

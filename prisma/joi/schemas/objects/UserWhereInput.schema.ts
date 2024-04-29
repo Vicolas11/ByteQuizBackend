@@ -8,11 +8,11 @@ import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema';
 import { IntFilterSchemaObject } from './IntFilter.schema';
 import { EnumRoleFilterSchemaObject } from './EnumRoleFilter.schema';
 import { QuizListRelationFilterSchemaObject } from './QuizListRelationFilter.schema';
-import { LeaderboardListRelationFilterSchemaObject } from './LeaderboardListRelationFilter.schema';
 import { AchievementListRelationFilterSchemaObject } from './AchievementListRelationFilter.schema';
 import { CompetitionListRelationFilterSchemaObject } from './CompetitionListRelationFilter.schema';
 import { CompetitionToUserListRelationFilterSchemaObject } from './CompetitionToUserListRelationFilter.schema';
-import { LogoutTokenListRelationFilterSchemaObject } from './LogoutTokenListRelationFilter.schema'
+import { LogoutTokenListRelationFilterSchemaObject } from './LogoutTokenListRelationFilter.schema';
+import { QuestionListRelationFilterSchemaObject } from './QuestionListRelationFilter.schema'
 
 export const UserWhereInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#UserWhereInput'),
@@ -38,9 +38,9 @@ Joi.boolean()),
 Joi.number()),
   role: Joi.alternatives().try(Joi.object().keys(EnumRoleFilterSchemaObject)),
   Quiz: Joi.object().keys(QuizListRelationFilterSchemaObject),
-  Leaderboard: Joi.object().keys(LeaderboardListRelationFilterSchemaObject),
   achievement: Joi.object().keys(AchievementListRelationFilterSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionListRelationFilterSchemaObject),
   joinedCompetitions: Joi.object().keys(CompetitionToUserListRelationFilterSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenListRelationFilterSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenListRelationFilterSchemaObject),
+  Question: Joi.object().keys(QuestionListRelationFilterSchemaObject)
 }

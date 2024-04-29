@@ -3,8 +3,8 @@ import Joi from 'joi';
 import { StringFilterSchemaObject } from './StringFilter.schema';
 import { IntFilterSchemaObject } from './IntFilter.schema';
 import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema';
+import { BoolFilterSchemaObject } from './BoolFilter.schema';
 import { QuestionListRelationFilterSchemaObject } from './QuestionListRelationFilter.schema';
-import { LeaderboardListRelationFilterSchemaObject } from './LeaderboardListRelationFilter.schema';
 import { UserRelationFilterSchemaObject } from './UserRelationFilter.schema';
 import { UserWhereInputSchemaObject } from './UserWhereInput.schema';
 import { CompetitionToUserListRelationFilterSchemaObject } from './CompetitionToUserListRelationFilter.schema'
@@ -25,17 +25,14 @@ Joi.string()),
 Joi.string()),
   price: Joi.alternatives().try(Joi.object().keys(IntFilterSchemaObject),
 Joi.number()),
-  point: Joi.alternatives().try(Joi.object().keys(IntFilterSchemaObject),
-Joi.number()),
-  totalPoint: Joi.alternatives().try(Joi.object().keys(IntFilterSchemaObject),
-Joi.number()),
   overallPoint: Joi.alternatives().try(Joi.object().keys(IntFilterSchemaObject),
 Joi.number()),
   createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFilterSchemaObject)),
+  hasStarted: Joi.alternatives().try(Joi.object().keys(BoolFilterSchemaObject),
+Joi.boolean()),
   createdUserId: Joi.alternatives().try(Joi.object().keys(StringFilterSchemaObject),
 Joi.string()),
   questions: Joi.object().keys(QuestionListRelationFilterSchemaObject),
-  leaderboards: Joi.object().keys(LeaderboardListRelationFilterSchemaObject),
   createdBy: Joi.alternatives().try(Joi.object().keys(UserRelationFilterSchemaObject),
 Joi.object().keys(UserWhereInputSchemaObject)),
   joinedUsers: Joi.object().keys(CompetitionToUserListRelationFilterSchemaObject)

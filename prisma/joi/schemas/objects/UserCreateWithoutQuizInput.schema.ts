@@ -1,10 +1,10 @@
 // @ts-nocheck
 import Joi from 'joi';
-import { LeaderboardCreateNestedManyWithoutUserInputSchemaObject } from './LeaderboardCreateNestedManyWithoutUserInput.schema';
 import { AchievementCreateNestedManyWithoutUserInputSchemaObject } from './AchievementCreateNestedManyWithoutUserInput.schema';
 import { CompetitionCreateNestedManyWithoutCreatedByInputSchemaObject } from './CompetitionCreateNestedManyWithoutCreatedByInput.schema';
 import { CompetitionToUserCreateNestedManyWithoutUserInputSchemaObject } from './CompetitionToUserCreateNestedManyWithoutUserInput.schema';
-import { LogoutTokenCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenCreateNestedManyWithoutUserInput.schema'
+import { LogoutTokenCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenCreateNestedManyWithoutUserInput.schema';
+import { QuestionCreateNestedManyWithoutUserInputSchemaObject } from './QuestionCreateNestedManyWithoutUserInput.schema'
 
 export const UserCreateWithoutQuizInputSchemaObject = {
     id: Joi.string(),
@@ -15,9 +15,9 @@ export const UserCreateWithoutQuizInputSchemaObject = {
   isFirstTime: Joi.boolean(),
   createAt: Joi.date(),
   highScore: Joi.number(),
-  Leaderboard: Joi.object().keys(LeaderboardCreateNestedManyWithoutUserInputSchemaObject),
   achievement: Joi.object().keys(AchievementCreateNestedManyWithoutUserInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionCreateNestedManyWithoutCreatedByInputSchemaObject),
   joinedCompetitions: Joi.object().keys(CompetitionToUserCreateNestedManyWithoutUserInputSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenCreateNestedManyWithoutUserInputSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenCreateNestedManyWithoutUserInputSchemaObject),
+  Question: Joi.object().keys(QuestionCreateNestedManyWithoutUserInputSchemaObject)
 }

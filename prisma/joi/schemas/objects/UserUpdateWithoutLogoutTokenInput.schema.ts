@@ -8,10 +8,10 @@ import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldU
 import { IntFieldUpdateOperationsInputSchemaObject } from './IntFieldUpdateOperationsInput.schema';
 import { EnumRoleFieldUpdateOperationsInputSchemaObject } from './EnumRoleFieldUpdateOperationsInput.schema';
 import { QuizUpdateManyWithoutUserNestedInputSchemaObject } from './QuizUpdateManyWithoutUserNestedInput.schema';
-import { LeaderboardUpdateManyWithoutUserNestedInputSchemaObject } from './LeaderboardUpdateManyWithoutUserNestedInput.schema';
 import { AchievementUpdateManyWithoutUserNestedInputSchemaObject } from './AchievementUpdateManyWithoutUserNestedInput.schema';
 import { CompetitionUpdateManyWithoutCreatedByNestedInputSchemaObject } from './CompetitionUpdateManyWithoutCreatedByNestedInput.schema';
-import { CompetitionToUserUpdateManyWithoutUserNestedInputSchemaObject } from './CompetitionToUserUpdateManyWithoutUserNestedInput.schema'
+import { CompetitionToUserUpdateManyWithoutUserNestedInputSchemaObject } from './CompetitionToUserUpdateManyWithoutUserNestedInput.schema';
+import { QuestionUpdateManyWithoutUserNestedInputSchemaObject } from './QuestionUpdateManyWithoutUserNestedInput.schema'
 
 export const UserUpdateWithoutLogoutTokenInputSchemaObject = {
     id: Joi.alternatives().try(Joi.string(),
@@ -32,8 +32,8 @@ Joi.object().keys(BoolFieldUpdateOperationsInputSchemaObject)),
 Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),
   role: Joi.alternatives().try(Joi.object().keys(EnumRoleFieldUpdateOperationsInputSchemaObject)),
   Quiz: Joi.object().keys(QuizUpdateManyWithoutUserNestedInputSchemaObject),
-  Leaderboard: Joi.object().keys(LeaderboardUpdateManyWithoutUserNestedInputSchemaObject),
   achievement: Joi.object().keys(AchievementUpdateManyWithoutUserNestedInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionUpdateManyWithoutCreatedByNestedInputSchemaObject),
-  joinedCompetitions: Joi.object().keys(CompetitionToUserUpdateManyWithoutUserNestedInputSchemaObject)
+  joinedCompetitions: Joi.object().keys(CompetitionToUserUpdateManyWithoutUserNestedInputSchemaObject),
+  Question: Joi.object().keys(QuestionUpdateManyWithoutUserNestedInputSchemaObject)
 }

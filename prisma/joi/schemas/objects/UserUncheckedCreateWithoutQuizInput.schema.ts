@@ -1,10 +1,10 @@
 // @ts-nocheck
 import Joi from 'joi';
-import { LeaderboardUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LeaderboardUncheckedCreateNestedManyWithoutUserInput.schema';
 import { AchievementUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './AchievementUncheckedCreateNestedManyWithoutUserInput.schema';
 import { CompetitionUncheckedCreateNestedManyWithoutCreatedByInputSchemaObject } from './CompetitionUncheckedCreateNestedManyWithoutCreatedByInput.schema';
 import { CompetitionToUserUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './CompetitionToUserUncheckedCreateNestedManyWithoutUserInput.schema';
-import { LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenUncheckedCreateNestedManyWithoutUserInput.schema'
+import { LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './LogoutTokenUncheckedCreateNestedManyWithoutUserInput.schema';
+import { QuestionUncheckedCreateNestedManyWithoutUserInputSchemaObject } from './QuestionUncheckedCreateNestedManyWithoutUserInput.schema'
 
 export const UserUncheckedCreateWithoutQuizInputSchemaObject = {
     id: Joi.string(),
@@ -15,9 +15,9 @@ export const UserUncheckedCreateWithoutQuizInputSchemaObject = {
   isFirstTime: Joi.boolean(),
   createAt: Joi.date(),
   highScore: Joi.number(),
-  Leaderboard: Joi.object().keys(LeaderboardUncheckedCreateNestedManyWithoutUserInputSchemaObject),
   achievement: Joi.object().keys(AchievementUncheckedCreateNestedManyWithoutUserInputSchemaObject),
   createdCompetitions: Joi.object().keys(CompetitionUncheckedCreateNestedManyWithoutCreatedByInputSchemaObject),
   joinedCompetitions: Joi.object().keys(CompetitionToUserUncheckedCreateNestedManyWithoutUserInputSchemaObject),
-  LogoutToken: Joi.object().keys(LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject)
+  LogoutToken: Joi.object().keys(LogoutTokenUncheckedCreateNestedManyWithoutUserInputSchemaObject),
+  Question: Joi.object().keys(QuestionUncheckedCreateNestedManyWithoutUserInputSchemaObject)
 }

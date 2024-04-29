@@ -4,11 +4,14 @@ import { StringFilterSchemaObject } from './StringFilter.schema';
 import { IntFilterSchemaObject } from './IntFilter.schema';
 import { BoolFilterSchemaObject } from './BoolFilter.schema';
 import { StringNullableFilterSchemaObject } from './StringNullableFilter.schema';
+import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema';
 import { OptionListRelationFilterSchemaObject } from './OptionListRelationFilter.schema';
 import { CompetitionRelationFilterSchemaObject } from './CompetitionRelationFilter.schema';
 import { CompetitionWhereInputSchemaObject } from './CompetitionWhereInput.schema';
 import { QuizRelationFilterSchemaObject } from './QuizRelationFilter.schema';
-import { QuizWhereInputSchemaObject } from './QuizWhereInput.schema'
+import { QuizWhereInputSchemaObject } from './QuizWhereInput.schema';
+import { UserRelationFilterSchemaObject } from './UserRelationFilter.schema';
+import { UserWhereInputSchemaObject } from './UserWhereInput.schema'
 
 export const QuestionWhereInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#QuestionWhereInput'),
@@ -34,9 +37,14 @@ Joi.boolean()),
 Joi.string()),
   quizId: Joi.alternatives().try(Joi.object().keys(StringNullableFilterSchemaObject),
 Joi.string()),
+  createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFilterSchemaObject)),
+  userId: Joi.alternatives().try(Joi.object().keys(StringNullableFilterSchemaObject),
+Joi.string()),
   options: Joi.object().keys(OptionListRelationFilterSchemaObject),
   Competition: Joi.alternatives().try(Joi.object().keys(CompetitionRelationFilterSchemaObject),
 Joi.object().keys(CompetitionWhereInputSchemaObject)),
   Quiz: Joi.alternatives().try(Joi.object().keys(QuizRelationFilterSchemaObject),
-Joi.object().keys(QuizWhereInputSchemaObject))
+Joi.object().keys(QuizWhereInputSchemaObject)),
+  user: Joi.alternatives().try(Joi.object().keys(UserRelationFilterSchemaObject),
+Joi.object().keys(UserWhereInputSchemaObject))
 }

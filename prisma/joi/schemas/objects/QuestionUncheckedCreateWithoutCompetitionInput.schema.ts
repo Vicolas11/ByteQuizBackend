@@ -11,5 +11,7 @@ export const QuestionUncheckedCreateWithoutCompetitionInputSchemaObject = {
   isAnswered: Joi.boolean(),
   isCompleted: Joi.boolean(),
   quizId: Joi.alternatives().try(Joi.string()),
+  createdAt: Joi.date(),
+  userId: Joi.alternatives().try(Joi.string()),
   options: Joi.object().keys(OptionUncheckedCreateNestedManyWithoutQuestionInputSchemaObject)
 }

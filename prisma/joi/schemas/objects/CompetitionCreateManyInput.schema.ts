@@ -8,9 +8,8 @@ export const CompetitionCreateManyInputSchemaObject = {
   subtitle: Joi.string().required(),
   imgCover: Joi.string().required(),
   price: Joi.number().required(),
-  point: Joi.number(),
-  totalPoint: Joi.number(),
   overallPoint: Joi.number(),
   createdAt: Joi.date(),
+  hasStarted: Joi.boolean(),
   createdUserId: Joi.string().required()
 }

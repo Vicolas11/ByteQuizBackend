@@ -10,5 +10,7 @@ export const QuestionCreateManyCompetitionInputSchemaObject = {
   point: Joi.number(),
   isAnswered: Joi.boolean(),
   isCompleted: Joi.boolean(),
-  quizId: Joi.alternatives().try(Joi.string())
+  quizId: Joi.alternatives().try(Joi.string()),
+  createdAt: Joi.date(),
+  userId: Joi.alternatives().try(Joi.string())
 }

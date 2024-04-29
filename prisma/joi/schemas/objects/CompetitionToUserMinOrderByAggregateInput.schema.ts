@@ -6,5 +6,7 @@ export const CompetitionToUserMinOrderByAggregateInputSchemaObject = {
     userId: SortOrderSchema,
   competitionId: SortOrderSchema,
   joinedDate: SortOrderSchema,
-  hasJoined: SortOrderSchema
+  hasJoined: SortOrderSchema,
+  hasSubmitted: SortOrderSchema,
+  totalPoint: SortOrderSchema
 }

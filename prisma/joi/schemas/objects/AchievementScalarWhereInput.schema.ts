@@ -1,7 +1,8 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { StringFilterSchemaObject } from './StringFilter.schema';
-import { StringNullableFilterSchemaObject } from './StringNullableFilter.schema'
+import { StringNullableFilterSchemaObject } from './StringNullableFilter.schema';
+import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema'
 
 export const AchievementScalarWhereInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#AchievementScalarWhereInput'),
@@ -16,5 +17,6 @@ Joi.string()),
   medalImg: Joi.alternatives().try(Joi.object().keys(StringFilterSchemaObject),
 Joi.string()),
   userId: Joi.alternatives().try(Joi.object().keys(StringNullableFilterSchemaObject),
-Joi.string())
+Joi.string()),
+  createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFilterSchemaObject))
 }

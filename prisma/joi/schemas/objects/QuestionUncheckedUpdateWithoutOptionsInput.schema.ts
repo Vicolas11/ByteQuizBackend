@@ -3,7 +3,8 @@ import Joi from 'joi';
 import { StringFieldUpdateOperationsInputSchemaObject } from './StringFieldUpdateOperationsInput.schema';
 import { IntFieldUpdateOperationsInputSchemaObject } from './IntFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputSchemaObject } from './BoolFieldUpdateOperationsInput.schema';
-import { NullableStringFieldUpdateOperationsInputSchemaObject } from './NullableStringFieldUpdateOperationsInput.schema'
+import { NullableStringFieldUpdateOperationsInputSchemaObject } from './NullableStringFieldUpdateOperationsInput.schema';
+import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldUpdateOperationsInput.schema'
 
 export const QuestionUncheckedUpdateWithoutOptionsInputSchemaObject = {
     id: Joi.alternatives().try(Joi.string(),
@@ -23,5 +24,8 @@ Joi.object().keys(BoolFieldUpdateOperationsInputSchemaObject)),
   competitionId: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(NullableStringFieldUpdateOperationsInputSchemaObject)),
   quizId: Joi.alternatives().try(Joi.string(),
+Joi.object().keys(NullableStringFieldUpdateOperationsInputSchemaObject)),
+  createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFieldUpdateOperationsInputSchemaObject)),
+  userId: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(NullableStringFieldUpdateOperationsInputSchemaObject))
 }

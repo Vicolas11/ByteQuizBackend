@@ -2,7 +2,8 @@
 import Joi from 'joi';
 import { StringWithAggregatesFilterSchemaObject } from './StringWithAggregatesFilter.schema';
 import { DateTimeWithAggregatesFilterSchemaObject } from './DateTimeWithAggregatesFilter.schema';
-import { BoolWithAggregatesFilterSchemaObject } from './BoolWithAggregatesFilter.schema'
+import { BoolWithAggregatesFilterSchemaObject } from './BoolWithAggregatesFilter.schema';
+import { IntWithAggregatesFilterSchemaObject } from './IntWithAggregatesFilter.schema'
 
 export const CompetitionToUserScalarWhereWithAggregatesInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#CompetitionToUserScalarWhereWithAggregatesInput'),
@@ -16,5 +17,9 @@ Joi.string()),
 Joi.string()),
   joinedDate: Joi.alternatives().try(Joi.object().keys(DateTimeWithAggregatesFilterSchemaObject)),
   hasJoined: Joi.alternatives().try(Joi.object().keys(BoolWithAggregatesFilterSchemaObject),
-Joi.boolean())
+Joi.boolean()),
+  hasSubmitted: Joi.alternatives().try(Joi.object().keys(BoolWithAggregatesFilterSchemaObject),
+Joi.boolean()),
+  totalPoint: Joi.alternatives().try(Joi.object().keys(IntWithAggregatesFilterSchemaObject),
+Joi.number())
 }

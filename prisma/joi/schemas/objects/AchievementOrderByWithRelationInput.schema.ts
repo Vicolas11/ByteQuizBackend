@@ -10,5 +10,6 @@ export const AchievementOrderByWithRelationInputSchemaObject = {
   medalImg: SortOrderSchema,
   userId: Joi.alternatives().try(SortOrderSchema,
 Joi.object().keys(SortOrderInputSchemaObject)),
+  createdAt: SortOrderSchema,
   User: Joi.object().keys(UserOrderByWithRelationInputSchemaObject)
 }

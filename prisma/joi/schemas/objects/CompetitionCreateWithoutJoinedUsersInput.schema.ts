@@ -1,7 +1,6 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { QuestionCreateNestedManyWithoutCompetitionInputSchemaObject } from './QuestionCreateNestedManyWithoutCompetitionInput.schema';
-import { LeaderboardCreateNestedManyWithoutCompetitionInputSchemaObject } from './LeaderboardCreateNestedManyWithoutCompetitionInput.schema';
 import { UserCreateNestedOneWithoutCreatedCompetitionsInputSchemaObject } from './UserCreateNestedOneWithoutCreatedCompetitionsInput.schema'
 
 export const CompetitionCreateWithoutJoinedUsersInputSchemaObject = {
@@ -10,11 +9,9 @@ export const CompetitionCreateWithoutJoinedUsersInputSchemaObject = {
   subtitle: Joi.string().required(),
   imgCover: Joi.string().required(),
   price: Joi.number().required(),
-  point: Joi.number(),
-  totalPoint: Joi.number(),
   overallPoint: Joi.number(),
   createdAt: Joi.date(),
+  hasStarted: Joi.boolean(),
   questions: Joi.object().keys(QuestionCreateNestedManyWithoutCompetitionInputSchemaObject),
-  leaderboards: Joi.object().keys(LeaderboardCreateNestedManyWithoutCompetitionInputSchemaObject),
   createdBy: Joi.object().keys(UserCreateNestedOneWithoutCreatedCompetitionsInputSchemaObject)
 }

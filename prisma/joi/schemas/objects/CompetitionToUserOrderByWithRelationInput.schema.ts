@@ -9,6 +9,8 @@ export const CompetitionToUserOrderByWithRelationInputSchemaObject = {
   competitionId: SortOrderSchema,
   joinedDate: SortOrderSchema,
   hasJoined: SortOrderSchema,
+  hasSubmitted: SortOrderSchema,
+  totalPoint: SortOrderSchema,
   user: Joi.object().keys(UserOrderByWithRelationInputSchemaObject),
   competition: Joi.object().keys(CompetitionOrderByWithRelationInputSchemaObject)
 }
