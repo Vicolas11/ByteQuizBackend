@@ -2,7 +2,7 @@ import { SuccessType } from "../interfaces/success.interface";
 import { Response } from "express";
 
 export const successResponse = (args: SuccessType) => {
-  const { data = null, message, status = 200, res, other = [] } = args;
+  const { data = null, message, status = 200, res, other = null } = args;
   return res.status(status).json({
     status: true,
     code: res.statusCode,
@@ -15,7 +15,9 @@ export const successResponse = (args: SuccessType) => {
 export const customSuccessResp = (
   updateQuiz: any,
   res: Response,
-  msg: string
+  msg: string,
+  highScore: number,
+  userInfo: any
 ) =>
   successResponse({
     message: msg,
@@ -24,5 +26,7 @@ export const customSuccessResp = (
     res,
     other: {
       hasAchieved: true,
+      highScore,
+      achievement: userInfo?.achievement,
     },
   });
