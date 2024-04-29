@@ -37,8 +37,6 @@ const RegisterController = catchAsync(async (req: Request, res: Response) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log(randomAvatar(gender === "Male"));
-
     // Create the new user
     const newUser = await prisma.user.create({
       data: {
@@ -55,7 +53,7 @@ const RegisterController = catchAsync(async (req: Request, res: Response) => {
 
     return successResponse({
       message: "Signed up successfully!",
-      data: [],
+      data: null,
       status: 201,
       res,
     });
