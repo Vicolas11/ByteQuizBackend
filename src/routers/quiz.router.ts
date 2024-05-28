@@ -1,3 +1,4 @@
+import GetUsersQuizController from "../controllers/quiz/getUsersQuizController";
 import CreateQuizController from "../controllers/quiz/createQuizController";
 import SubmitQuizController from "../controllers/quiz/submitQuizController";
 import GetQuizController from "../controllers/quiz/getQuizController";
@@ -7,6 +8,7 @@ import { Router } from "express";
 import {
   QuizIdParamSchema,
   QuizInputSchema,
+  QuizQuerySchema,
   QuizSubmitInputSchema,
 } from "../joi/quiz.joi";
 
@@ -18,6 +20,12 @@ quizRouters.post(
   "/quiz",
   validateRequest(QuizInputSchema),
   CreateQuizController
+);
+
+quizRouters.get(
+  "/quiz",
+  validateRequest(QuizQuerySchema, "query"),
+  GetUsersQuizController
 );
 
 quizRouters.get(

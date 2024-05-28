@@ -1,3 +1,4 @@
+import GetJoinedCompetitionController from "../controllers/competition/getJoinedCompetitionController";
 import CreateCompetitionController from "../controllers/competition/createCompetitionController";
 import DeleteCompetitionController from "../controllers/competition/deleteCompetitionController";
 import GetAllCompetitionController from "../controllers/competition/getAllCompetitionController";
@@ -6,6 +7,7 @@ import SubmitCompetitionController from "../controllers/competition/submitCompet
 import UpdateCompetitionController from "../controllers/competition/updateCompetitionController";
 import GetCompetitionController from "../controllers/competition/getCompetitionController";
 import GetLeaderboardController from "../controllers/competition/getLeaderboardController";
+import FeedbackController from "../controllers/competition/FeedbackController";
 import { authenticateToken } from "../middlewares/authenticateToken";
 import { validateRequest } from "../middlewares/validateRequest";
 import { Router } from "express";
@@ -17,9 +19,6 @@ import {
   CompetitionSubInpSchema,
   CompetitionUpdInputSchema,
 } from "../joi/competition.joi";
-import FeedbackController from "../controllers/competition/FeedbackController";
-import { valid } from "joi";
-import GetJoinedCompetitionController from "../controllers/competition/getJoinedCompetitionController";
 
 const competitionRouters = Router();
 
