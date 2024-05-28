@@ -9,6 +9,7 @@ import { Response } from "express";
 const GetCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
     let { id } = req.params;
+    const userId = req.user?.id as string;
 
     try {
       const competition = await prisma.competition.findFirst({
@@ -16,6 +17,7 @@ const GetCompetitionController = catchAsync(
         orderBy: { createdAt: "asc" },
         include: {
           questions: {
+            orderBy: { createdAt: "asc" },
             where: { isCompleted: false },
             select: {
               id: true,
@@ -48,10 +50,23 @@ const GetCompetitionController = catchAsync(
         });
       }
 
+      // Find the CompetitionToUser record for the given user and competition
+      const competitionToUser = await prisma.competitionToUser.findUnique({
+        where: {
+          userId_competitionId: { userId, competitionId: id },
+        },
+      });
+
       return successResponse({
         message: "Fetch successfully",
         data: competition,
         res,
+        other: {
+          hasJoined: competitionToUser ? true : false,
+          hasSubmitted: !competitionToUser
+            ? false
+            : competitionToUser.hasSubmitted,
+        },
       });
     } catch (err: any) {
       return errorResponse({

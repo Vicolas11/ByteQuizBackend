@@ -1,13 +1,13 @@
 import { formatErrMsg, formatQuestions } from "../../utils/format.str.util";
 import { ConceptType } from "../../interfaces/question.interface";
 import { IJWTCustom } from "../../interfaces/jwtcustom.interface";
-import catchAsync from "../../utils/catchAsync";
-import { errorResponse } from "../../utils/errorResponse";
+import { getRandUniqueInt } from "../../utils/random.gen.utils";
 import { successResponse } from "../../utils/successResponse";
 import { Request } from "../../interfaces/request.interface";
 import { totalPointVal } from "../../utils/totalPoint.util";
+import { errorResponse } from "../../utils/errorResponse";
 import { quizQuestion } from "../../data/question.data";
-import { getRandUniqueInt } from "../../utils/random.gen.utils";
+import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
 
@@ -23,7 +23,7 @@ const CreateQuizController = catchAsync(async (req: Request, res: Response) => {
       (value) => quizQuestions[value]
     );
     const overallPoint = totalPointVal(genQuestions);
-  
+
     // Create Quiz
     const quiz = await prisma.quiz.create({
       data: {
@@ -35,15 +35,6 @@ const CreateQuizController = catchAsync(async (req: Request, res: Response) => {
           connect: { id: userId },
         },
       },
-      include: {
-        questions: {
-          include: {
-            options: {
-              orderBy: { label: "asc" }
-            }
-          }
-        },
-      },
     });
 
     return successResponse({
@@ -51,6 +42,9 @@ const CreateQuizController = catchAsync(async (req: Request, res: Response) => {
       data: quiz,
       status: 201,
       res,
+      other: {
+        compete: false,
+      },
     });
   } catch (err: any) {
     return errorResponse({

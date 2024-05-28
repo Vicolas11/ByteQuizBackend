@@ -52,6 +52,14 @@ const SubmitQuizController = catchAsync(
         });
       }
 
+      if (quizExist.hasSubmitted) {
+        return errorResponse({
+          message: "Have submitted quiz already!",
+          status: 409,
+          res,
+        });
+      }
+
       const quizQuestions = formatQuestions(questionData);
       const totalPoint = totalPointVal(quizQuestions);
 
@@ -59,11 +67,58 @@ const SubmitQuizController = catchAsync(
         where: { id },
         data: {
           totalPoint,
-          questions: {
-            create: quizQuestions,
-          },
+          hasSubmitted: true,
         },
       });
+
+      // Update Each related Question and Option
+      for (const questData of questionData) {
+        let {
+          id: questionId,
+          options,
+          score,
+          question,
+          time,
+          point,
+          isAnswered,
+          isCompleted,
+        } = questData;
+
+        // Update existing question
+        await prisma.question.update({
+          where: { id: questionId },
+          data: {
+            question,
+            score,
+            time,
+            point,
+            isAnswered,
+            isCompleted,
+          },
+        });
+        // Iterate over options and create/update each option
+        for (const optionData of options) {
+          const {
+            id: optionId,
+            value,
+            label,
+            isCorrect,
+            isSelected,
+          } = optionData;
+
+          // Update existing option
+          await prisma.option.update({
+            where: { id: optionId },
+            data: {
+              value,
+              label,
+              isCorrect,
+              isSelected,
+              questionId: questionId,
+            },
+          });
+        }
+      }
 
       const loginUser = await prisma.user.findUnique({
         where: { id: userId },
@@ -78,12 +133,11 @@ const SubmitQuizController = catchAsync(
         });
       }
 
-      let updatedUser;
       const hasScoredHigh = totalPoint > loginUser.highScore;
 
       if (hasScoredHigh) {
         // Update User High Score
-        updatedUser = await prisma.user.update({
+        await prisma.user.update({
           where: { id: loginUser.id },
           data: { highScore: totalPoint },
           include: { achievement: true },
@@ -145,6 +199,7 @@ const SubmitQuizController = catchAsync(
           hasAchieved: false,
           highScore: hasScoredHigh ? totalPoint : loginUser.highScore,
           achievement: loginUser.achievement,
+          compete: false
         },
       });
     } catch (err: any) {

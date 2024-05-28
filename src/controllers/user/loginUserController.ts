@@ -48,7 +48,6 @@ const LoginUserController = catchAsync(async (req: Request, res: Response) => {
     return successResponse({
       message: "Login successfully",
       data: {
-        ...rest,
         accessToken,
         refreshToken,
       },

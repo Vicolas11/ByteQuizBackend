@@ -14,9 +14,12 @@ const GetLeaderboardController = catchAsync(
     const pageSize = +(perPage as string) || 10;
     const pgNum = +(currentPage as string) || 1;
     const skip = (pgNum - 1) * pageSize;
-    const totalCount = (
-      await prisma.competitionToUser.findMany({ where: { competitionId: id } })
-    ).length || 0;
+    const totalCount =
+      (
+        await prisma.competitionToUser.findMany({
+          where: { competitionId: id },
+        })
+      ).length || 0;
     const totalPages = Math.ceil(totalCount / pageSize);
     const userId = req.user?.id as string;
 
@@ -66,8 +69,16 @@ const GetLeaderboardController = catchAsync(
         isUser: data.userId === userId,
       }));
 
-      // Sort users by totalPoints in descending order
-      userWithDetails.sort((a, b) => b.point - a.point);
+      // Sort users by totalPoints and Date in descending order
+      userWithDetails.sort((a, b) => {
+        if (b.point !== a.point) {
+          return b.point - a.point;
+        }
+
+        return (
+          new Date(a.joinedDate).getTime() - new Date(b.joinedDate).getTime()
+        );
+      });
 
       // Add position to each user
       userWithDetails.forEach((data, id) => {

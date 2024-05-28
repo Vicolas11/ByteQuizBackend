@@ -6,6 +6,7 @@ import { errorResponse } from "../../utils/errorResponse";
 import catchAsync from "../../utils/catchAsync";
 import { prisma } from "../../server";
 import { Response } from "express";
+import { options } from "joi";
 
 const SubmitCompetitionController = catchAsync(
   async (req: Request, res: Response) => {
@@ -88,7 +89,11 @@ const SubmitCompetitionController = catchAsync(
       });
 
       if (!competitionToUser_) {
-        throw new Error(`CompetitionToUser not found for this user`);
+        return errorResponse({
+          message: "Competition not found for this user",
+          status: 404,
+          res,
+        });
       }
 
       // Connect the created questions to the competition
@@ -99,13 +104,16 @@ const SubmitCompetitionController = catchAsync(
             connect: createdQuestionIds.map((id) => ({ id })),
           },
         },
+        include: { questions: { include: { options: true } } },
       });
 
       return successResponse({
         message: "Competition submitted successfully!",
-        data: null,
+        data: id,
         res,
-        other: null,
+        other: {
+          compete: true,
+        },
       });
     } catch (err: any) {
       return errorResponse({

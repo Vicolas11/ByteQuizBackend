@@ -30,9 +30,13 @@ const UpdateCompetitionController = catchAsync(
 
       // Check if the Competition exist
       const competition = await prisma.competition.findFirst({
-        where: { AND: [{ id }] },
+        where: { id },
         include: {
-          questions: true,
+          questions: {
+            include: {
+              options: true,
+            },
+          },
         },
       });
 
@@ -77,22 +81,67 @@ const UpdateCompetitionController = catchAsync(
 
       // Update Each related Question and Option
       for (const questData of questionData) {
-        const { id: questionId, options, ...question } = questData;
+        let {
+          id: questionId,
+          options,
+          score,
+          question,
+          time,
+          point,
+        } = questData;
 
-        await prisma.question.update({
-          where: { id: questionId },
-          data: question,
-        });
+        if (questionId) {
+          // Update existing question
+          await prisma.question.update({
+            where: { id: questionId },
+            data: {
+              question,
+              score,
+              time,
+              point,
+              competitionId: id,
+            },
+          });
+        } else {
+          // Create new question
+          const newQuestion = await prisma.question.create({
+            data: {
+              question,
+              score,
+              time,
+              point,
+              competitionId: id,
+            },
+          });
+          questionId = newQuestion.id;
+        }
 
         // Iterate over options and create/update each option
         for (const optionData of options) {
-          const { id: optionId, ...option } = optionData;
+          const { id: optionId, value, label, isCorrect } = optionData;
 
-          // Update the option
-          await prisma.option.update({
-            where: { id: optionId },
-            data: option,
-          });
+          if (optionId) {
+            // Update existing option
+            await prisma.option.update({
+              where: { id: optionId },
+              data: {
+                value,
+                label,
+                isCorrect,
+                questionId: questionId,
+              },
+            });
+          } else {
+            // Create new option
+            await prisma.option.create({
+              data: {
+                value,
+                label,
+                isCorrect,
+                questionId: questionId,
+              },
+            });
+          }
         }
       }
 

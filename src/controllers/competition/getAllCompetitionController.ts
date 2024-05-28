@@ -26,8 +26,13 @@ const GetAllCompetitionController = catchAsync(
               email: true,
               avatar: true
             }
+          },
+          joinedUsers: {
+            select: {
+              userId: true
+            }
           }
-        },
+        },      
         take: pageSize,
         skip,
       });

@@ -16,12 +16,6 @@ const JoinedCompetitionController = catchAsync(
       const competition = await prisma.competition.findFirst({
         where: { AND: [{ id }] },
         orderBy: { createdAt: "asc" },
-        include: {
-          questions: {
-            where: { isCompleted: false },
-            include: { options: { orderBy: { label: "asc" } } },
-          },
-        },
       });
 
       if (!competition) {
@@ -75,6 +69,9 @@ const JoinedCompetitionController = catchAsync(
         message: "Joined competition successfully!",
         data: competition,
         res,
+        other: {
+          compete: true,
+        },
       });
     } catch (err: any) {
       return errorResponse({
