@@ -4,7 +4,6 @@
   "description": "The core backend of ByteQuiz Application",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node index.js",
     "dev": "nodemon src/index.ts",
