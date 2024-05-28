@@ -3,7 +3,7 @@ This is the core backend of the ByteQuiz web application, developed with Express
 
 ## Get started
 1. Git clone the project
-2. Change the directory to the project folder **cd RideSmartBE**
+2. Change the directory to the project folder **cd ByteQuizBackend**
 3. Run **yarn install** or **npm install** to install modules
 4. Create a **.env** file
 5. Copy everything in **.env.template** file to the **.env** file
