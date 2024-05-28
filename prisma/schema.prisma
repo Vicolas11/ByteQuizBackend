@@ -71,6 +71,7 @@ model Quiz {
   user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())
   userId       String
+  hasSubmitted Boolean    @default(false)
 }
 
 model Competition {
