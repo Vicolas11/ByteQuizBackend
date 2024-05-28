@@ -1,9 +1,7 @@
-import { GenQuestionsType, QuestionType } from "../interfaces/question.interface";
-
-export const totalPointVal = (questionList: GenQuestionsType[]): number => {
+export const totalPointVal = (questionList: any): number => {
   let totalScoreAllQuestions = 0;
 
-  questionList.forEach((question) => {
+  questionList.forEach((question: any) => {
     const totalScore = question.point;
     totalScoreAllQuestions += totalScore;
   });
