@@ -76,7 +76,6 @@ const FeedbackController = catchAsync(async (req: Request, res: Response) => {
 
     return successResponse({
       message: "Fetched feedback successfully!",
-      // data: feedback_.joinedCompetitions[0].competition.questions,
       data: feedback.competition.questions,
       res,
       other: {
