@@ -15,7 +15,7 @@ export function getRandUniqueInt(length = 10): number[] {
   const uniqueIntegers: Set<number> = new Set();
 
   while (uniqueIntegers.size < length) {
-    const randomNumber = Math.floor(Math.random() * 20);
+    const randomNumber = Math.floor(Math.random() * 32);
     uniqueIntegers.add(randomNumber);
   }
 
