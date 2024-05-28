@@ -35,11 +35,9 @@ export interface QuizType {
   functions: QuestionType[];
   variables: QuestionType[];
   classes: QuestionType[];
-  methods: QuestionType[];
-  inheritance: QuestionType[];
-  encapsulation: QuestionType[];
-  polymorphism: QuestionType[];
   general: QuestionType[];
+  "data types": QuestionType[];
+  "conditional statements": QuestionType[];
 }
 
 export type ConceptType =
@@ -48,8 +46,6 @@ export type ConceptType =
   | "functions"
   | "variables"
   | "classes"
-  | "methods"
-  | "inheritance"
-  | "encapsulation"
-  | "polymorphism"
-  | "general";
+  | "general"
+  | "data types"
+  | "conditional statements";
