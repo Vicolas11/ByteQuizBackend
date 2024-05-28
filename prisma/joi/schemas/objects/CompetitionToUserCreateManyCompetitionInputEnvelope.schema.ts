@@ -4,6 +4,5 @@ import { CompetitionToUserCreateManyCompetitionInputSchemaObject } from './Compe
 
 export const CompetitionToUserCreateManyCompetitionInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(CompetitionToUserCreateManyCompetitionInputSchemaObject),
-Joi.array().items(Joi.object().keys(CompetitionToUserCreateManyCompetitionInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(CompetitionToUserCreateManyCompetitionInputSchemaObject)))
 }

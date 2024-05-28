@@ -8,7 +8,8 @@ import { CompetitionToUserMinOrderByAggregateInputSchemaObject } from './Competi
 import { CompetitionToUserSumOrderByAggregateInputSchemaObject } from './CompetitionToUserSumOrderByAggregateInput.schema'
 
 export const CompetitionToUserOrderByWithAggregationInputSchemaObject = {
-    userId: SortOrderSchema,
+    id: SortOrderSchema,
+  userId: SortOrderSchema,
   competitionId: SortOrderSchema,
   joinedDate: SortOrderSchema,
   hasJoined: SortOrderSchema,

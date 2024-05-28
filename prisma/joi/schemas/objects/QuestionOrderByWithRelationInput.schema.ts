@@ -1,7 +1,6 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
-import { SortOrderInputSchemaObject } from './SortOrderInput.schema';
 import { OptionOrderByRelationAggregateInputSchemaObject } from './OptionOrderByRelationAggregateInput.schema';
 import { CompetitionOrderByWithRelationInputSchemaObject } from './CompetitionOrderByWithRelationInput.schema';
 import { QuizOrderByWithRelationInputSchemaObject } from './QuizOrderByWithRelationInput.schema';
@@ -15,13 +14,10 @@ export const QuestionOrderByWithRelationInputSchemaObject = {
   point: SortOrderSchema,
   isAnswered: SortOrderSchema,
   isCompleted: SortOrderSchema,
-  competitionId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
-  quizId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  competitionId: SortOrderSchema,
+  quizId: SortOrderSchema,
   createdAt: SortOrderSchema,
-  userId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  userId: SortOrderSchema,
   options: Joi.object().keys(OptionOrderByRelationAggregateInputSchemaObject),
   Competition: Joi.object().keys(CompetitionOrderByWithRelationInputSchemaObject),
   Quiz: Joi.object().keys(QuizOrderByWithRelationInputSchemaObject),

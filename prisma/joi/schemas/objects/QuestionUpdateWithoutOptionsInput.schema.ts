@@ -9,9 +9,7 @@ import { QuizUpdateOneWithoutQuestionsNestedInputSchemaObject } from './QuizUpda
 import { UserUpdateOneWithoutQuestionNestedInputSchemaObject } from './UserUpdateOneWithoutQuestionNestedInput.schema'
 
 export const QuestionUpdateWithoutOptionsInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  question: Joi.alternatives().try(Joi.string(),
+    question: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   score: Joi.alternatives().try(Joi.number(),
 Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),

@@ -14,9 +14,7 @@ import { CompetitionToUserUncheckedUpdateManyWithoutUserNestedInputSchemaObject 
 import { LogoutTokenUncheckedUpdateManyWithoutUserNestedInputSchemaObject } from './LogoutTokenUncheckedUpdateManyWithoutUserNestedInput.schema'
 
 export const UserUncheckedUpdateWithoutQuestionInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  email: Joi.alternatives().try(Joi.string(),
+    email: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   username: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),

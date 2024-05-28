@@ -4,6 +4,5 @@ import { AchievementCreateManyUserInputSchemaObject } from './AchievementCreateM
 
 export const AchievementCreateManyUserInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(AchievementCreateManyUserInputSchemaObject),
-Joi.array().items(Joi.object().keys(AchievementCreateManyUserInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(AchievementCreateManyUserInputSchemaObject)))
 }

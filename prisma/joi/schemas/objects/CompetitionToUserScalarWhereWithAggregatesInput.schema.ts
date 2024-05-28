@@ -11,6 +11,8 @@ Joi.array().items(Joi.link('#CompetitionToUserScalarWhereWithAggregatesInput')))
   OR: Joi.array().items(Joi.link('#CompetitionToUserScalarWhereWithAggregatesInput')),
   NOT: Joi.alternatives().try(Joi.link('#CompetitionToUserScalarWhereWithAggregatesInput'),
 Joi.array().items(Joi.link('#CompetitionToUserScalarWhereWithAggregatesInput'))),
+  id: Joi.alternatives().try(Joi.object().keys(StringWithAggregatesFilterSchemaObject),
+Joi.string()),
   userId: Joi.alternatives().try(Joi.object().keys(StringWithAggregatesFilterSchemaObject),
 Joi.string()),
   competitionId: Joi.alternatives().try(Joi.object().keys(StringWithAggregatesFilterSchemaObject),

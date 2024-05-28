@@ -1,7 +1,6 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
-import { SortOrderInputSchemaObject } from './SortOrderInput.schema';
 import { UserCountOrderByAggregateInputSchemaObject } from './UserCountOrderByAggregateInput.schema';
 import { UserAvgOrderByAggregateInputSchemaObject } from './UserAvgOrderByAggregateInput.schema';
 import { UserMaxOrderByAggregateInputSchemaObject } from './UserMaxOrderByAggregateInput.schema';
@@ -13,8 +12,7 @@ export const UserOrderByWithAggregationInputSchemaObject = {
   email: SortOrderSchema,
   username: SortOrderSchema,
   password: SortOrderSchema,
-  avatar: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  avatar: SortOrderSchema,
   gender: SortOrderSchema,
   isFirstTime: SortOrderSchema,
   createAt: SortOrderSchema,

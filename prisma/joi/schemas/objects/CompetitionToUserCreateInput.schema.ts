@@ -4,7 +4,8 @@ import { UserCreateNestedOneWithoutJoinedCompetitionsInputSchemaObject } from '.
 import { CompetitionCreateNestedOneWithoutJoinedUsersInputSchemaObject } from './CompetitionCreateNestedOneWithoutJoinedUsersInput.schema'
 
 export const CompetitionToUserCreateInputSchemaObject = {
-    joinedDate: Joi.date(),
+    id: Joi.string(),
+  joinedDate: Joi.date(),
   hasJoined: Joi.boolean(),
   hasSubmitted: Joi.boolean(),
   totalPoint: Joi.number(),

@@ -4,6 +4,5 @@ import { CompetitionCreateManyCreatedByInputSchemaObject } from './CompetitionCr
 
 export const CompetitionCreateManyCreatedByInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(CompetitionCreateManyCreatedByInputSchemaObject),
-Joi.array().items(Joi.object().keys(CompetitionCreateManyCreatedByInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(CompetitionCreateManyCreatedByInputSchemaObject)))
 }

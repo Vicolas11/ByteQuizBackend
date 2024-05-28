@@ -14,9 +14,7 @@ import { CompetitionToUserUpdateManyWithoutUserNestedInputSchemaObject } from '.
 import { QuestionUpdateManyWithoutUserNestedInputSchemaObject } from './QuestionUpdateManyWithoutUserNestedInput.schema'
 
 export const UserUpdateWithoutLogoutTokenInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  email: Joi.alternatives().try(Joi.string(),
+    email: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   username: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),

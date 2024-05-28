@@ -1,7 +1,6 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
-import { SortOrderInputSchemaObject } from './SortOrderInput.schema';
 import { QuizOrderByRelationAggregateInputSchemaObject } from './QuizOrderByRelationAggregateInput.schema';
 import { AchievementOrderByRelationAggregateInputSchemaObject } from './AchievementOrderByRelationAggregateInput.schema';
 import { CompetitionOrderByRelationAggregateInputSchemaObject } from './CompetitionOrderByRelationAggregateInput.schema';
@@ -14,8 +13,7 @@ export const UserOrderByWithRelationInputSchemaObject = {
   email: SortOrderSchema,
   username: SortOrderSchema,
   password: SortOrderSchema,
-  avatar: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  avatar: SortOrderSchema,
   gender: SortOrderSchema,
   isFirstTime: SortOrderSchema,
   createAt: SortOrderSchema,

@@ -1,3 +1,3 @@
 import Joi from 'joi';
 
-export const CompetitionToUserScalarFieldEnumSchema = Joi.string().valid(...["userId","competitionId","joinedDate","hasJoined","hasSubmitted","totalPoint"])
+export const CompetitionToUserScalarFieldEnumSchema = Joi.string().valid(...["id","userId","competitionId","joinedDate","hasJoined","hasSubmitted","totalPoint"])

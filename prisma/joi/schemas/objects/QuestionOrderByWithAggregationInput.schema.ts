@@ -1,7 +1,6 @@
 // @ts-nocheck
 import Joi from 'joi';
 import { SortOrderSchema } from '../enums/SortOrder.schema';
-import { SortOrderInputSchemaObject } from './SortOrderInput.schema';
 import { QuestionCountOrderByAggregateInputSchemaObject } from './QuestionCountOrderByAggregateInput.schema';
 import { QuestionAvgOrderByAggregateInputSchemaObject } from './QuestionAvgOrderByAggregateInput.schema';
 import { QuestionMaxOrderByAggregateInputSchemaObject } from './QuestionMaxOrderByAggregateInput.schema';
@@ -16,13 +15,10 @@ export const QuestionOrderByWithAggregationInputSchemaObject = {
   point: SortOrderSchema,
   isAnswered: SortOrderSchema,
   isCompleted: SortOrderSchema,
-  competitionId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
-  quizId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  competitionId: SortOrderSchema,
+  quizId: SortOrderSchema,
   createdAt: SortOrderSchema,
-  userId: Joi.alternatives().try(SortOrderSchema,
-Joi.object().keys(SortOrderInputSchemaObject)),
+  userId: SortOrderSchema,
   _count: Joi.object().keys(QuestionCountOrderByAggregateInputSchemaObject),
   _avg: Joi.object().keys(QuestionAvgOrderByAggregateInputSchemaObject),
   _max: Joi.object().keys(QuestionMaxOrderByAggregateInputSchemaObject),

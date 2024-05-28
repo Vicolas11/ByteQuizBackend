@@ -6,9 +6,7 @@ import { BoolFieldUpdateOperationsInputSchemaObject } from './BoolFieldUpdateOpe
 import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldUpdateOperationsInput.schema'
 
 export const QuestionUpdateManyMutationInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  question: Joi.alternatives().try(Joi.string(),
+    question: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   score: Joi.alternatives().try(Joi.number(),
 Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),

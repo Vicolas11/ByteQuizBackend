@@ -4,6 +4,5 @@ import { LogoutTokenCreateManyUserInputSchemaObject } from './LogoutTokenCreateM
 
 export const LogoutTokenCreateManyUserInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(LogoutTokenCreateManyUserInputSchemaObject),
-Joi.array().items(Joi.object().keys(LogoutTokenCreateManyUserInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(LogoutTokenCreateManyUserInputSchemaObject)))
 }

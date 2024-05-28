@@ -5,9 +5,7 @@ import { BoolFieldUpdateOperationsInputSchemaObject } from './BoolFieldUpdateOpe
 import { QuestionUpdateOneWithoutOptionsNestedInputSchemaObject } from './QuestionUpdateOneWithoutOptionsNestedInput.schema'
 
 export const OptionUpdateInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  value: Joi.alternatives().try(Joi.string(),
+    value: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   label: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),

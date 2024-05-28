@@ -3,7 +3,8 @@ import Joi from 'joi';
 
 
 export const CompetitionToUserCreateManyUserInputSchemaObject = {
-    competitionId: Joi.string().required(),
+    id: Joi.string(),
+  competitionId: Joi.string().required(),
   joinedDate: Joi.date(),
   hasJoined: Joi.boolean(),
   hasSubmitted: Joi.boolean(),

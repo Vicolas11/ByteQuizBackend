@@ -4,6 +4,5 @@ import { QuestionCreateManyCompetitionInputSchemaObject } from './QuestionCreate
 
 export const QuestionCreateManyCompetitionInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(QuestionCreateManyCompetitionInputSchemaObject),
-Joi.array().items(Joi.object().keys(QuestionCreateManyCompetitionInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(QuestionCreateManyCompetitionInputSchemaObject)))
 }

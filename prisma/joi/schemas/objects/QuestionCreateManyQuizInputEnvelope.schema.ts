@@ -4,6 +4,5 @@ import { QuestionCreateManyQuizInputSchemaObject } from './QuestionCreateManyQui
 
 export const QuestionCreateManyQuizInputEnvelopeSchemaObject = {
     data: Joi.alternatives().try(Joi.object().keys(QuestionCreateManyQuizInputSchemaObject),
-Joi.array().items(Joi.object().keys(QuestionCreateManyQuizInputSchemaObject))),
-  skipDuplicates: Joi.boolean()
+Joi.array().items(Joi.object().keys(QuestionCreateManyQuizInputSchemaObject)))
 }

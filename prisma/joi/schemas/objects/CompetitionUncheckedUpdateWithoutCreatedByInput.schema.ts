@@ -8,9 +8,7 @@ import { QuestionUncheckedUpdateManyWithoutCompetitionNestedInputSchemaObject } 
 import { CompetitionToUserUncheckedUpdateManyWithoutCompetitionNestedInputSchemaObject } from './CompetitionToUserUncheckedUpdateManyWithoutCompetitionNestedInput.schema'
 
 export const CompetitionUncheckedUpdateWithoutCreatedByInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  title: Joi.alternatives().try(Joi.string(),
+    title: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   subtitle: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),

@@ -5,7 +5,8 @@ import { UserOrderByWithRelationInputSchemaObject } from './UserOrderByWithRelat
 import { CompetitionOrderByWithRelationInputSchemaObject } from './CompetitionOrderByWithRelationInput.schema'
 
 export const CompetitionToUserOrderByWithRelationInputSchemaObject = {
-    userId: SortOrderSchema,
+    id: SortOrderSchema,
+  userId: SortOrderSchema,
   competitionId: SortOrderSchema,
   joinedDate: SortOrderSchema,
   hasJoined: SortOrderSchema,

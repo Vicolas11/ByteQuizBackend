@@ -5,9 +5,7 @@ import { BoolFieldUpdateOperationsInputSchemaObject } from './BoolFieldUpdateOpe
 import { NullableStringFieldUpdateOperationsInputSchemaObject } from './NullableStringFieldUpdateOperationsInput.schema'
 
 export const OptionUncheckedUpdateInputSchemaObject = {
-    id: Joi.alternatives().try(Joi.string(),
-Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
-  value: Joi.alternatives().try(Joi.string(),
+    value: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
   label: Joi.alternatives().try(Joi.string(),
 Joi.object().keys(StringFieldUpdateOperationsInputSchemaObject)),
