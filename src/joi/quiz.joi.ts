@@ -1,4 +1,4 @@
-import { QuestionSchema } from "./competition.joi";
+import { QuestionUpdSchema } from "./competition.joi";
 import Joi from "joi";
 
 export const QuizInputSchema = Joi.object({
@@ -9,10 +9,9 @@ export const QuizInputSchema = Joi.object({
       "functions",
       "variables",
       "classes",
-      "methods",
-      "inheritance",
-      "encapsulation",
-      "polymorphism"
+      "general",
+      "data types",
+      "conditional statements"
     )
     .required(),
 });
@@ -21,7 +20,12 @@ export const QuizIdParamSchema = Joi.object({
   id: Joi.string().guid({ version: "uuidv4" }).required(),
 });
 
+export const QuizQuerySchema = Joi.object({
+  currentPage: Joi.number(),
+  perPage: Joi.number(),
+});
+
 export const QuizSubmitInputSchema = Joi.object({
   id: Joi.string().guid({ version: "uuidv4" }).required(),
-  questionData: Joi.array().items(QuestionSchema).required(),
+  questionData: Joi.array().items(QuestionUpdSchema).required(),
 });

@@ -8,7 +8,7 @@ const optionSchema = Joi.object({
 });
 
 const optionUpdSchema = optionSchema.keys({
-  id: Joi.string().guid({ version: "uuidv4" }).required(),
+  id: Joi.string().guid({ version: "uuidv4" }),
 });
 
 export const QuestionSchema = Joi.object({
@@ -22,7 +22,7 @@ export const QuestionSchema = Joi.object({
 });
 
 export const QuestionUpdSchema = QuestionSchema.keys({
-  id: Joi.string().guid({ version: "uuidv4" }).required(),
+  id: Joi.string().guid({ version: "uuidv4" }),
 }).keys({
   options: Joi.array().items(optionUpdSchema).required(),
 });
