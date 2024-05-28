@@ -7,5 +7,6 @@ export const QuizCreateManyInputSchemaObject = {
   totalPoint: Joi.number(),
   overallPoint: Joi.number(),
   createdAt: Joi.date(),
-  userId: Joi.string().required()
+  userId: Joi.string().required(),
+  hasSubmitted: Joi.boolean()
 }

@@ -8,5 +8,6 @@ export const QuizUncheckedCreateInputSchemaObject = {
   overallPoint: Joi.number(),
   createdAt: Joi.date(),
   userId: Joi.string().required(),
+  hasSubmitted: Joi.boolean(),
   questions: Joi.object().keys(QuestionUncheckedCreateNestedManyWithoutQuizInputSchemaObject)
 }

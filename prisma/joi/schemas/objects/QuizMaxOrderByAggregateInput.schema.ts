@@ -7,5 +7,6 @@ export const QuizMaxOrderByAggregateInputSchemaObject = {
   totalPoint: SortOrderSchema,
   overallPoint: SortOrderSchema,
   createdAt: SortOrderSchema,
-  userId: SortOrderSchema
+  userId: SortOrderSchema,
+  hasSubmitted: SortOrderSchema
 }

@@ -7,5 +7,6 @@ export const QuizCreateWithoutQuestionsInputSchemaObject = {
   totalPoint: Joi.number(),
   overallPoint: Joi.number(),
   createdAt: Joi.date(),
+  hasSubmitted: Joi.boolean(),
   user: Joi.object().keys(UserCreateNestedOneWithoutQuizInputSchemaObject)
 }

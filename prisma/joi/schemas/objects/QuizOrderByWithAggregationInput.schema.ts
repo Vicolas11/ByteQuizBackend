@@ -13,6 +13,7 @@ export const QuizOrderByWithAggregationInputSchemaObject = {
   overallPoint: SortOrderSchema,
   createdAt: SortOrderSchema,
   userId: SortOrderSchema,
+  hasSubmitted: SortOrderSchema,
   _count: Joi.object().keys(QuizCountOrderByAggregateInputSchemaObject),
   _avg: Joi.object().keys(QuizAvgOrderByAggregateInputSchemaObject),
   _max: Joi.object().keys(QuizMaxOrderByAggregateInputSchemaObject),

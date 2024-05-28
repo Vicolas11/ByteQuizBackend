@@ -10,6 +10,7 @@ export const QuizOrderByWithRelationInputSchemaObject = {
   overallPoint: SortOrderSchema,
   createdAt: SortOrderSchema,
   userId: SortOrderSchema,
+  hasSubmitted: SortOrderSchema,
   questions: Joi.object().keys(QuestionOrderByRelationAggregateInputSchemaObject),
   user: Joi.object().keys(UserOrderByWithRelationInputSchemaObject)
 }

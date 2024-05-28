@@ -2,7 +2,8 @@
 import Joi from 'joi';
 import { StringFilterSchemaObject } from './StringFilter.schema';
 import { IntFilterSchemaObject } from './IntFilter.schema';
-import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema'
+import { DateTimeFilterSchemaObject } from './DateTimeFilter.schema';
+import { BoolFilterSchemaObject } from './BoolFilter.schema'
 
 export const QuizScalarWhereInputSchemaObject = {
     AND: Joi.alternatives().try(Joi.link('#QuizScalarWhereInput'),
@@ -18,5 +19,7 @@ Joi.number()),
 Joi.number()),
   createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFilterSchemaObject)),
   userId: Joi.alternatives().try(Joi.object().keys(StringFilterSchemaObject),
-Joi.string())
+Joi.string()),
+  hasSubmitted: Joi.alternatives().try(Joi.object().keys(BoolFilterSchemaObject),
+Joi.boolean())
 }
