@@ -51,10 +51,8 @@ const GetCompetitionController = catchAsync(
       }
 
       // Find the CompetitionToUser record for the given user and competition
-      const competitionToUser = await prisma.competitionToUser.findUnique({
-        where: {
-          userId_competitionId: { userId, competitionId: id },
-        },
+      const competitionToUser = await prisma.competitionToUser.findFirst({
+        where: { AND: [{ userId  }, { competitionId: id }] },
       });
 
       return successResponse({

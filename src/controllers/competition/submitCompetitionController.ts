@@ -40,9 +40,9 @@ const SubmitCompetitionController = catchAsync(
       }
 
       // Check if the user has already joined this competition
-      const competitionToUser = await prisma.competitionToUser.findUnique({
-        where: { userId_competitionId: { userId, competitionId: id } },
-      });
+      const competitionToUser = await prisma.competitionToUser.findFirst({
+        where: { AND: [{ userId  }, { competitionId: id }] },
+      })
 
       if (!competitionToUser) {
         return errorResponse({
@@ -66,7 +66,7 @@ const SubmitCompetitionController = catchAsync(
 
       // Update the user's total points for the competition
       await prisma.competitionToUser.update({
-        where: { userId_competitionId: { userId, competitionId: id } },
+        where: { id: competitionToUser.id },
         data: { totalPoint, hasSubmitted: true },
       });
 
@@ -82,10 +82,8 @@ const SubmitCompetitionController = catchAsync(
       }
 
       // Find the CompetitionToUser record for the given user and competition
-      const competitionToUser_ = await prisma.competitionToUser.findUnique({
-        where: {
-          userId_competitionId: { userId, competitionId: id },
-        },
+      const competitionToUser_ = await prisma.competitionToUser.findFirst({
+        where: { AND: [{ userId  }, { competitionId: id }] },
       });
 
       if (!competitionToUser_) {
