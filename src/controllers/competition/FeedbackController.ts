@@ -27,8 +27,6 @@ const FeedbackController = catchAsync(async (req: Request, res: Response) => {
       });
     }
 
-    const test = await prisma.competitionToUser.findMany({ where: { userId } });
-
     // Get User's Feedback for a Particular Competition
     const feedback = await prisma.competitionToUser.findFirst({
       where: { AND: [{ userId  }, { competitionId: id }] },
