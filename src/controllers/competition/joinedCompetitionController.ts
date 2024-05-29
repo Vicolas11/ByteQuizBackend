@@ -45,6 +45,7 @@ const JoinedCompetitionController = catchAsync(
           message: "You have already joined this competition!",
           status: 400,
           res,
+          errors: [{ competeId: id, hasJoined: existingEntry.hasJoined }],
         });
       }
 
